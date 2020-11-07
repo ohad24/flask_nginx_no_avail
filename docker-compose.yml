@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    ports:
+      - 5000:5000
+  web:
+    image: nginx
+    volumes: 
+      - ./server.conf:/etc/nginx/conf.d/server.conf
+      - ./custom_50x.html:/usr/share/nginx/html/custom_50x.html
+      - ./flags:/usr/share/nginx/html/flags
+    ports:
+      - 80:80
